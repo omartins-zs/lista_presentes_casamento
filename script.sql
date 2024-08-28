@@ -14,3 +14,11 @@ CREATE TABLE marcas (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+CREATE TABLE produto_marcas (
+    produto_id INT,
+    marca_id INT,
+    PRIMARY KEY (produto_id, marca_id),
+    FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE,
+    FOREIGN KEY (marca_id) REFERENCES marcas(id) ON DELETE CASCADE
+);
