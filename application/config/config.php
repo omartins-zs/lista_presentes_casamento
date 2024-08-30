@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'https://localhost/lista_presentes_casamento';
+date_default_timezone_set('America/Sao_Paulo');
 
 /*
 |--------------------------------------------------------------------------
