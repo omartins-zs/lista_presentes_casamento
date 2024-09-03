@@ -9,3 +9,12 @@
 
     <!-- Alertify.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js" integrity="sha512-JnjG+Wt53GspUQXQhc+c4j8SBERsgJAoHeehagKHlxQN+MtCCmFDghX9/AcbkkNRZptyZU4zC8utK59M5L45Iw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+    	alertify.defaults.transition = "flipx";
+    	alertify.defaults.theme.ok = "btn btn-success";
+    	alertify.defaults.theme.cancel = "btn btn-danger";
+    	alertify.defaults.theme.input = "form-control";
+
+    	alertify.set('notifier', 'position', 'top-center');
+    </script>
