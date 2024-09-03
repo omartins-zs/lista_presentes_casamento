@@ -9,7 +9,7 @@
     <meta name="author" content="Gabriel Martins" />
     <title><?= $titulo ?></title>
 	<!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="https://localhost/lista_presentes_casamento/assets/favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="<?= base_url() ?>assets/img/icons8-caixa-de-presente-color-favicons/web/icons8-caixa-de-presente-color-16.png" />
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
