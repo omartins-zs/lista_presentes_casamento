@@ -19,3 +19,20 @@
     		$('.selectpicker').selectpicker();
     	});
     </script>
+	
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		<?php if ($this->session->flashdata("success")) { ?>
+    			alertify.set('notifier', 'position', 'top-center');
+    			alertify.success("<?= $this->session->flashdata("success") ?>");
+    		<?php } ?>
+    		<?php if ($this->session->flashdata("danger")) { ?>
+    			alertify.set('notifier', 'position', 'top-center');
+    			alertify.error("<?= $this->session->flashdata("danger") ?>");
+    		<?php } ?>
+    		<?php if ($this->session->flashdata("message")) { ?>
+    			alertify.set('notifier', 'position', 'top-center');
+    			alertify.message("<?= $this->session->flashdata("message") ?>");
+    		<?php } ?>
+    	})
+    </script>
