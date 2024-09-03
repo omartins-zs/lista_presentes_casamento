@@ -6,8 +6,8 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 				<li class="nav-item"><a class="nav-link active" href="#!" aria-current="page">Lista de Presentes</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">Cerimônia</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">Festa</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?= base_url() ?>shop/cerimonia">Cerimônia</a></li>
+				<li class="nav-item"><a class="nav-link" href="<?= base_url() ?>shop/festa">Festa</a></li>
 			</ul>
 		</div>
 	</div>
