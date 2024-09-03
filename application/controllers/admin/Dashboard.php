@@ -10,6 +10,8 @@ class Dashboard extends MY_Controller
 
 	public function index()
 	{
+		$dados["titulo"] = "Dashboard do Casamento";
+
 		$dados['total_produtos'] = $this->Dashboard_model->countProdutos();
 		$dados['total_marcas'] = $this->Dashboard_model->countMarcas();
 
