@@ -1,0 +1,36 @@
+.card.comprado {
+    position: relative;
+    overflow: hidden;
+}
+
+.card.comprado::before {
+    content: "Produto Comprado";
+    position: absolute;
+    top: 35%; /* Centraliza verticalmente */
+    left: 0;
+    right: 0;
+    background: rgba(255, 0, 0, 0.7);
+    color: white;
+    padding: 10px 0;
+    font-size: 20px;
+    text-align: center;
+    transform: translateY(-50%); /* Ajusta o posicionamento vertical para centralizar */
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.card.comprado img {
+    filter: blur(4px);
+    transition: filter 0.3s ease-in-out;
+}
+
+.card.comprado:hover img {
+    filter: blur(2px);
+}
+
+@media (max-width: 768px) {
+    .card.comprado::before {
+        font-size: 16px; /* Ajuste o tamanho da fonte para telas menores */
+        padding: 8px 0;
+    }
+}
