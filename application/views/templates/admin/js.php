@@ -50,6 +50,12 @@
     				}
     			}
     		});
+    		// Style Search de Pesquisa da Table Visita
+    		$('[type=search]').each(function() {
+    			$(this).attr("placeholder", "Pesquisar...");
+    			// $(this).css('height', '2rem');
+    		});
+
     	});
     </script>
 
