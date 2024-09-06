@@ -57,4 +57,15 @@ class Marca extends MY_Controller
 		// $this->load->view('admin/dashboard');
 		$this->load->view('templates/admin/footer');
 	}
+
+	public function update($id)
+	{
+		$marca = array(
+			"nome" => $this->input->post("nome")
+		);
+
+		$this->Marca_model->atualizar($id, $marca);
+
+		redirect('admin/marca');
+	}
 }
