@@ -15,4 +15,13 @@ class Marca_model extends CI_Model
 
 		return $this->db->get()->result();
 	}
+
+	public function buscaMarcaPorId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('marcas');
+		$this->db->where('id', $id);
+
+		return $this->db->get()->row();
+	}
 }
