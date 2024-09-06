@@ -33,4 +33,15 @@ class Marca extends MY_Controller
 		$this->load->view('admin/marca/insertEdit');
 		$this->load->view('templates/admin/footer');
 	}
+
+	public function create()
+	{
+		$marca = array(
+			"nome" => $this->input->post("nome")
+		);
+
+		$this->Marca_model->inserir($marca);
+
+		redirect('admin/marca');
+	}
 }
