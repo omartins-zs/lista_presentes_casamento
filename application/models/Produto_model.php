@@ -50,4 +50,14 @@ class Produto_model extends CI_Model
 		$this->db->where('produto_id', $produto_id);
 		$this->db->delete('produto_marcas');
 	}
+
+	public function getMarcasByProdutoId($produto_id)
+	{
+		$this->db->select('m.*');
+		$this->db->from('marcas m');
+		$this->db->join('produto_marcas pm', 'pm.marca_id = m.id');
+		$this->db->where('pm.produto_id', $produto_id);
+		$query = $this->db->get();
+		return $query->result();
+	}
 }
