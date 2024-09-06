@@ -20,4 +20,19 @@ class Shop extends MY_Controller
 		$this->load->view('shop/produtos');
 		$this->load->view('templates/shop/footer');
 	}
+
+	public function detalhes($id)
+	{
+		$dados["titulo"] = "Detalhes do Presente";
+
+		$dados['produto'] = $this->Produto_model->buscaProdutoPorId($id);
+		$dados['marcas'] = $this->Produto_model->getMarcasByProdutoId($id); // Supondo que você tenha uma função para buscar as marcas do produto
+
+		$this->load->vars($dados);
+
+		$this->load->view('templates/shop/header');
+		$this->load->view('templates/shop/navbar');
+		$this->load->view('shop/detalhes');
+		$this->load->view('templates/shop/footer');
+	}
 }
