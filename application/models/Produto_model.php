@@ -30,4 +30,12 @@ class Produto_model extends CI_Model
 		);
 		return $this->db->insert('produto_marcas', $data);
 	}
+
+	public function buscaProdutoPorId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('produtos');
+		$this->db->where('id', $id);
+		return $this->db->get()->row();
+	}
 }
