@@ -44,4 +44,17 @@ class Marca extends MY_Controller
 
 		redirect('admin/marca');
 	}
+
+	public function edit($id)
+	{
+		$dados['marca'] = $this->Marca_model->buscaMarcaPorId($id);
+
+		$this->load->vars($dados);
+
+		$this->load->view('templates/admin/header');
+		$this->load->view('templates/admin/navbar');
+		$this->load->view('admin/marca/insertEdit');
+		// $this->load->view('admin/dashboard');
+		$this->load->view('templates/admin/footer');
+	}
 }
