@@ -47,4 +47,16 @@ class Shop extends MY_Controller
 		$this->load->view('pages/cerimonia');
 		$this->load->view('templates/shop/footer');
 	}
+
+	public function festa()
+	{
+		$dados["titulo"] = "Festa";
+
+		$this->load->vars($dados);
+
+		$this->load->view('templates/shop/header');
+		$this->load->view('templates/shop/navbar');
+		$this->load->view('pages/festa');
+		$this->load->view('templates/shop/footer');
+	}
 }
