@@ -21,4 +21,13 @@ class Produto_model extends CI_Model
 		$this->db->insert('produtos', $produto);
 		return $this->db->insert_id();
 	}
+
+	public function associarMarca($produto_id, $marca_id)
+	{
+		$data = array(
+			'produto_id' => $produto_id,
+			'marca_id' => $marca_id
+		);
+		return $this->db->insert('produto_marcas', $data);
+	}
 }
