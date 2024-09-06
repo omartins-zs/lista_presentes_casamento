@@ -79,4 +79,55 @@
 	</div>
 </section>
 
+<!-- Modal PIX -->
+<div class="portfolio-modal modal fade" id="pixModal" tabindex="-1" aria-labelledby="portfolioModalPix" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Enviar PIX</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<h2 class="text-secondary text-uppercase mb-0 text-center">Ajudar com PIX</h2>
+
+				<!-- Centralizar QR Code -->
+				<div class="text-center">
+					<img class="img-fluid rounded mb-5" src="<?= base_url('assets/img/qrcode.jpg'); ?>" alt="Imagem Genérica" style="max-width: 200px;" />
+				</div>
+
+				<p class="mb-4 text-center">Utilize o QR Code acima para fazer a contribuição via PIX.</p>
+
+				<!-- Cartões com Informações de PIX -->
+				<div class="d-flex justify-content-center flex-wrap gap-3">
+					<div class="card mb-4" style="background-color:#f48c06; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+						<div class="card-body">
+							<h5 class="card-title">PIX do GABRIEL</h5>
+							<span><strong>Banco:</strong> Nubank</span><br>
+							<span><strong>Chave PIX:</strong> gabrielmatheus209@gmail.com</span><br>
+							<span><strong>Banco:</strong> Santander</span><br>
+							<span><strong>Chave PIX:</strong> 538.638.858-48</span><br>
+						</div>
+					</div>
+					<div class="card mb-4" style="background-color:#f48c06; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+						<div class="card-body">
+							<h5 class="card-title">PIX da Bárbara</h5>
+							<span><strong>Banco:</strong> Nubank</span><br>
+							<span><strong>Chave PIX:</strong> gabrielmatheus209@gmail.com</span><br>
+							<span><strong>Banco:</strong> Santander</span><br>
+							<span><strong>Chave PIX:</strong> 538.638.858-48</span><br>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+
+					<button data-dismiss="modal" class="btn btn-success" onclick="comprarProduto(<?= $produto->id; ?>)">Vou dar esse presente pelo PIX</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <?php $this->load->view('templates/shop/js'); ?>
