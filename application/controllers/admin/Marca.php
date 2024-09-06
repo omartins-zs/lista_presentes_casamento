@@ -21,4 +21,16 @@ class Marca extends MY_Controller
 		$this->load->view('admin/marca/listagem');
 		$this->load->view('templates/admin/footer');
 	}
+
+	public function novo()
+	{
+		$dados["titulo"] = "Cadastro de Marca";
+
+		$this->load->vars($dados);
+
+		$this->load->view('templates/admin/header');
+		$this->load->view('templates/admin/navbar');
+		$this->load->view('admin/marca/insertEdit');
+		$this->load->view('templates/admin/footer');
+	}
 }
