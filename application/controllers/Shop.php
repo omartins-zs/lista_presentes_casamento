@@ -59,4 +59,28 @@ class Shop extends MY_Controller
 		$this->load->view('pages/festa');
 		$this->load->view('templates/shop/footer');
 	}
+
+	public function comprar($id)
+	{
+		try {
+			// Recebe a entrada JSON
+			$input = json_decode(file_get_contents('php://input'), true);
+
+			// Verifica se o nome do comprador está definido
+			if (isset($input['nome_comprador'])) {
+				$this->load->model('produto_model');
+				$this->produto_model->marcar_como_comprado($id, $input['nome_comprador']);
+
+				// Retorna uma resposta JSON
+				echo json_encode(['status' => 'success']);
+			} else {
+				// Retorna uma resposta de erro se o nome do comprador não estiver definido
+				echo json_encode(['status' => 'error', 'message' => 'Nome do comprador não fornecido.']);
+			}
+		} catch (Exception $e) {
+			// Captura qualquer exceção e exibe a mensagem de erro
+			echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+			http_response_code(500);
+		}
+	}
 }
