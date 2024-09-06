@@ -60,4 +60,23 @@ class Produto_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	public function marcar_como_comprado($id, $nome_comprador)
+	{
+		try {
+			// Certifique-se de que a coluna 'nome_comprador' existe na tabela 'produtos'
+			$this->db->where('id', $id);
+			$this->db->update('produtos', [
+				'comprado' => 1,
+				'nome_comprador' => $nome_comprador
+			]);
+
+			// Exibe a última query executada
+			echo 'Query Executada: ' . $this->db->last_query();
+		} catch (Exception $e) {
+			// Captura qualquer exceção e exibe a mensagem de erro
+			echo 'Erro na query: ' . $e->getMessage();
+			http_response_code(500);
+		}
+	}
 }
