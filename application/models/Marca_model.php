@@ -7,4 +7,12 @@ class Marca_model extends CI_Model
 	{
 		$this->db->insert("marcas", $marca);
 	}
+
+	public function buscaMarcas()
+	{
+		$this->db->select('*');
+		$this->db->from('marcas');
+
+		return $this->db->get()->result();
+	}
 }
