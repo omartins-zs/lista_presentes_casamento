@@ -130,4 +130,48 @@ class Produto extends MY_Controller
 		$this->load->view('admin/produto/insertEdit');
 		$this->load->view('templates/admin/footer');
 	}
+
+	public function update($id)
+	{
+		$produto = array(
+			"nome" => $this->input->post("nome"),
+			"detalhes" => $this->input->post("detalhes"),
+			"link_1" => $this->input->post("link_1"),
+			"link_2" => $this->input->post("link_2"),
+			"preco_intervalo" => $this->input->post("preco_intervalo"),
+		);
+
+		// Verifica se o campo de imagem foi enviado
+		if (!empty($_FILES['imagem']['name'])) {
+			$config = $this->configurarUpload();
+			$this->upload->initialize($config);
+
+			// Verifica se o upload foi bem-sucedido
+			if ($this->upload->do_upload('imagem')) {
+				$file_data = $this->upload->data();
+				$file_name = $file_data['file_name'];
+				$produto['imagem'] = $file_name; // Atualiza o nome da imagem
+			} else {
+				// Se o upload falhar, imprime mensagem de erro e termina o script
+				$this->session->set_flashdata('error_msg', 'Erro ao fazer o upload da imagem: ' . $this->upload->display_errors());
+				redirect('admin/produto/edit/' . $id);
+			}
+		}
+
+		$this->Produto_model->atualizar($id, $produto);
+
+		// Remove marcas associadas antigas
+		$this->Produto_model->removerMarcas($id);
+
+		// Adiciona as novas marcas associadas
+		$marcas = $this->input->post("marcas"); // Array de IDs das marcas selecionadas
+		if (!empty($marcas)) {
+			foreach ($marcas as $marca_id) {
+				$this->Produto_model->associarMarca($id, $marca_id);
+			}
+		}
+
+		$this->session->set_flashdata('success', 'Produto editado com sucesso');
+		redirect('admin/produto');
+	}
 }
