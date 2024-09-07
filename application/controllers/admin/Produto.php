@@ -22,4 +22,19 @@ class Produto extends MY_Controller
 
 		return $config;
 	}
+
+	public function index()
+	{
+		log_message('debug', 'Método index() chamado');
+
+		$dados["titulo"] = "Produtos";
+		$dados['produtos'] = $this->Produto_model->buscaProdutos();
+
+		$this->load->vars($dados);
+
+		$this->load->view('templates/admin/header');
+		$this->load->view('templates/admin/navbar');
+		$this->load->view('admin/produto/listagem');
+		$this->load->view('templates/admin/footer');
+	}
 }
