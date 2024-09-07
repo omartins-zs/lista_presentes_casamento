@@ -116,4 +116,18 @@ class Produto extends MY_Controller
 		$this->session->set_flashdata('success', 'Produto inserido com sucesso');
 		redirect('admin/produto');
 	}
+
+	public function edit($id)
+	{
+		$dados['produto'] = $this->Produto_model->buscaProdutoPorId($id);
+		$dados['marcas'] = $this->Marca_model->buscaMarcas();
+		$dados['marcas_selecionadas'] = $this->Produto_model->getMarcasByProdutoId($id);
+
+		$this->load->vars($dados);
+
+		$this->load->view('templates/admin/header');
+		$this->load->view('templates/admin/navbar');
+		$this->load->view('admin/produto/insertEdit');
+		$this->load->view('templates/admin/footer');
+	}
 }
