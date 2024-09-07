@@ -52,4 +52,68 @@ class Produto extends MY_Controller
 		$this->load->view('admin/produto/insertEdit');
 		$this->load->view('templates/admin/footer');
 	}
+
+	public function create()
+	{
+		log_message('debug', 'Método create() chamado');
+
+		// Configuração do upload
+		$config = $this->configurarUpload();
+		$this->upload->initialize($config);
+
+		log_message('debug', 'Configuração de upload inicializada');
+
+		// Verifica se o upload foi bem-sucedido
+		if ($this->upload->do_upload('imagem')) {
+			echo 'Upload bem-sucedido<br>';
+			log_message('debug', 'Upload bem-sucedido');
+
+			$file_data = $this->upload->data();
+			$file_name = $file_data['file_name']; // Nome do arquivo após o upload
+			log_message('debug', 'Nome do arquivo após upload: ' . $file_name);
+		} else {
+			echo 'Erro no upload<br>';
+			log_message('error', 'Erro no upload');
+
+			// Se o upload falhar, exibe mensagens de erro e redireciona
+			$upload_errors = $this->upload->display_errors();
+			$this->session->set_flashdata('error_msg', $upload_errors);
+			log_message('error', 'Erro ao fazer o upload da imagem: ' . $upload_errors);
+
+			redirect('admin/produto/novo');
+		}
+
+		// Dados do produto
+		echo 'Preparando dados do produto<br>';
+		log_message('debug', 'Preparando dados do produto');
+
+		$produto = array(
+			"nome" => $this->input->post("nome"),
+			"detalhes" => $this->input->post("detalhes"),
+			"link_1" => $this->input->post("link_1"),
+			"link_2" => $this->input->post("link_2"),
+			"preco_intervalo" => $this->input->post("preco_intervalo"),
+			"imagem" => isset($file_name) ? $file_name : null
+		);
+
+		// Insere o produto no banco de dados e obtém o ID do produto inserido
+		$produto_id = $this->Produto_model->inserir($produto);
+		log_message('debug', 'Produto inserido com ID: ' . $produto_id);
+
+		// Manipular marcas selecionadas
+		$marcas = $this->input->post("marcas"); // Array de IDs das marcas selecionadas
+		if (!empty($marcas)) {
+			foreach ($marcas as $marca_id) {
+				// Associa a marca ao produto
+				$this->Produto_model->associarMarca($produto_id, $marca_id);
+				log_message('debug', 'Marca ID ' . $marca_id . ' associada ao produto ID ' . $produto_id);
+			}
+		}
+
+		echo 'Produto inserido com sucesso<br>';
+		log_message('debug', 'Produto inserido com sucesso');
+
+		$this->session->set_flashdata('success', 'Produto inserido com sucesso');
+		redirect('admin/produto');
+	}
 }
