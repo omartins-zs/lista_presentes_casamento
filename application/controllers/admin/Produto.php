@@ -37,4 +37,19 @@ class Produto extends MY_Controller
 		$this->load->view('admin/produto/listagem');
 		$this->load->view('templates/admin/footer');
 	}
+
+	public function novo()
+	{
+		log_message('debug', 'Método novo() chamado');
+
+		$dados["titulo"] = "Cadastro de Produto";
+		$dados['marcas'] = $this->Marca_model->buscaMarcas();
+
+		$this->load->vars($dados);
+
+		$this->load->view('templates/admin/header');
+		$this->load->view('templates/admin/navbar');
+		$this->load->view('admin/produto/insertEdit');
+		$this->load->view('templates/admin/footer');
+	}
 }
