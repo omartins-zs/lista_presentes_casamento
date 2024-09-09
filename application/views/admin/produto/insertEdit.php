@@ -12,13 +12,13 @@
 						<div class="col-4">
 							<div class="form-group">
 								<label for="inputNome">Nome do Produto</label>
-								<input class="form-control" type="text" value="<?= $produto->nome; ?>" name="nome" required>
+								<input class="form-control" type="text" value="<?= isset($produto->nome) ? $produto->nome : ''; ?>" name="nome" required>
 							</div>
 						</div>
 						<div class="col-4">
 							<div class="form-group">
 								<label for="inputDetalhes">Detalhes do Produto</label>
-								<input class="form-control" type="text" value="<?= $produto->detalhes; ?>" name="detalhes" required>
+								<input class="form-control" type="text" value="<?= isset($produto->detalhes) ? $produto->detalhes : ''; ?>" name="detalhes" required>
 							</div>
 						</div>
 						<div class="col-4">
@@ -26,7 +26,7 @@
 								<label for="marca">Marcas</label>
 								<select class="form-control selectpicker" name="marcas[]" id="marcas" multiple>
 									<?php foreach ($marcas as $marca) : ?>
-										<option value="<?= $marca->id; ?>" <?php if (in_array($marca->id, array_column($marcas_selecionadas, 'id'))) echo 'selected'; ?>>
+										<option value="<?= $marca->id; ?>" <?= isset($produto->marcas) && in_array($marca->id, array_column($produto->marcas, 'id')) ? 'selected' : ''; ?>>
 											<?= $marca->nome; ?>
 										</option>
 									<?php endforeach; ?>
@@ -39,13 +39,13 @@
 						<div class="col-6">
 							<div class="form-group">
 								<label for="inputLink1">Link 1</label>
-								<input class="form-control" type="url" value="<?= $produto->link_1; ?>" name="link_1">
+								<input class="form-control" type="url" value="<?= isset($produto->link_1) ? $produto->link_1 : ''; ?>" name="link_1">
 							</div>
 						</div>
 						<div class="col-6">
 							<div class="form-group">
 								<label for="inputLink2">Link 2</label>
-								<input class="form-control" type="url" value="<?= $produto->link_2; ?>" name="link_2">
+								<input class="form-control" type="url" value="<?= isset($produto->link_2) ? $produto->link_2 : ''; ?>" name="link_2">
 							</div>
 						</div>
 					</div>
@@ -54,29 +54,30 @@
 						<div class="col-6">
 							<div class="form-group">
 								<label for="inputPreco">Preço (Intervalo)</label>
-								<input class="form-control" type="text" value="<?= $produto->preco_intervalo; ?>" name="preco_intervalo" required>
+								<input class="form-control" type="text" value="<?= isset($produto->preco_intervalo) ? $produto->preco_intervalo : ''; ?>" name="preco_intervalo" required>
 								<small>*Até R$ 150,00 ou R$250,00 - R$ 350,00</small>
 							</div>
 						</div>
 						<div class="col-6">
 							<div class="form-group">
 								<label for="inputImagem">Upload da Imagem</label>
-								<?php if (empty($produto->imagem)) : ?>
-									<img src="<?= base_url('assets/admin/images/default_upload.jpg'); ?>" id="img_url" alt="Sua imagem" class="img-thumbnail">
-								<?php else : ?>
+								<!-- Imagem atual ou padrão -->
+								<?php if (isset($produto->imagem) && !empty($produto->imagem)) : ?>
 									<img src="<?= base_url('assets/admin/upload/' . $produto->imagem); ?>" id="img_url" alt="Sua imagem" class="img-thumbnail">
+								<?php else : ?>
+									<img src="<?= base_url('assets/admin/images/default_upload.jpg'); ?>" id="img_url" alt="Sua imagem" class="img-thumbnail">
 								<?php endif; ?>
-								<input type="hidden" name="imagem_nome" value="<?= $produto->imagem ?>">
-								<input class="form-control-file mt-2" id="inputImagem" type="file" name="imagem" onChange="img_pathUrl(this);">
+								<!-- Campo oculto para nome da imagem -->
+								<input type="hidden" name="imagem_nome" value="<?= isset($produto->imagem) ? $produto->imagem : ''; ?>">
+								<!-- Campo de upload de imagem -->
+								<input class="form-control-file mt-2" id="inputImagem" type="file" name="imagem" onchange="img_pathUrl(this);">
 							</div>
 						</div>
 					</div>
 
-					<?php if (isset($produto->id)) { ?>
-						<button class="btn btn-primary" type="submit">Atualizar Produto</button>
-					<?php } else { ?>
-						<button class="btn btn-primary" type="submit">Adicionar Produto</button>
-					<?php } ?>
+					<button class="btn btn-primary" type="submit">
+						<?= isset($produto->id) ? 'Atualizar Produto' : 'Adicionar Produto'; ?>
+					</button>
 					</form>
 		</div>
 	</div>
