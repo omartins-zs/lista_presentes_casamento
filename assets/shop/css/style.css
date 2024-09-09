@@ -28,6 +28,18 @@
     filter: blur(2px);
 }
 
+.header-image {
+	background-image: url('../../img/Casamento_Gabriel_Barbara.png');
+	/* Caminho dinâmico usando PHP */
+	/* Substitua pelo caminho da sua imagem */
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	color: #fff;
+	height: 400px;
+	/* Garantir que o texto fique visível */
+}
+
 @media (max-width: 768px) {
     .card.comprado::before {
         font-size: 16px; /* Ajuste o tamanho da fonte para telas menores */
