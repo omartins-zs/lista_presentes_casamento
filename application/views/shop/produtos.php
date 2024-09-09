@@ -1,3 +1,13 @@
+<!-- Header-->
+<header class="bg-dark py-5">
+	<div class="container px-4 px-lg-5 my-5">
+		<div class="text-center text-white">
+			<h1 class="display-4 fw-bolder">Shop in style</h1>
+			<p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+		</div>
+	</div>
+</header>
+
 <!-- Section-->
 <section class="py-5">
 	<div class="container-fluid px-4 px-lg-5 mt-5">
@@ -19,13 +29,13 @@
 						<!-- Product actions -->
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<?php if ($item->comprado) : ?>
-								<div class="d-grid gap-2">
+								<div class="d-grid mr-3">
 									<h4 class="text-center"><span class="badge badge-info">Produto Comprado</span></h4>
 									<a class="btn btn-outline-dark mt-auto w-100" href="<?= base_url('shop/detalhes/' . $item->id); ?>">Ver detalhes</a>
 								</div>
 							<?php else :  ?>
-								<div class="d-grid gap-2">
-									<a class="btn btn-outline-dark mt-auto w-100" href="<?= base_url('shop/detalhes/' . $item->id); ?>">Ver detalhes</a>
+								<div class="d-grid mr-3">
+									<a class="btn btn-outline-dark mt-auto w-100 mb-2" href="<?= base_url('shop/detalhes/' . $item->id); ?>">Ver detalhes</a>
 									<button class="btn btn-success mt-auto w-100" onclick="comprarProduto(<?= $item->id; ?>)">Vou dar esse presente</button>
 								</div>
 							<?php endif; ?>
