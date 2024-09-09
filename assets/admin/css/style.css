@@ -1,22 +1,3 @@
-html,
-body {
-	height: 100%;
-	/* Garante que o body ocupe 100% da altura */
-	margin: 0;
-	padding: 0;
-}
-
-.wrapper {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-	/* Garante que a altura mínima seja 100% da viewport */
-}
-
-.main-content {
-	flex: 1;
-	/* Faz o conteúdo ocupar o máximo de espaço possível */
-}
 #img_url {
 	background: #ddd;
 	width: 6.25rem;
