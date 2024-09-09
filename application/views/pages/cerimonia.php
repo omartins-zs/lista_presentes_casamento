@@ -1,3 +1,4 @@
+<div class="content">
 	<div class="container-fluid my-4">
 		<div class="row">
 			<!-- Imagem do Local -->
@@ -25,3 +26,4 @@
 			</div>
 		</div>
 	</div>
+</div>
