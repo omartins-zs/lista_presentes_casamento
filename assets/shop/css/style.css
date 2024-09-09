@@ -1,3 +1,20 @@
+ html,
+ body {
+ 	height: 100%;
+ 	margin: 0;
+ }
+
+ /* Garante que o body ocupe toda a altura da tela */
+ body {
+ 	display: flex;
+ 	flex-direction: column;
+ 	min-height: 100vh;
+ }
+
+.content {
+   	flex: 1;
+}
+
 .card.comprado {
     position: relative;
     overflow: hidden;
