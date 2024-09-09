@@ -1,20 +1,21 @@
 <!-- Product section-->
-<section class="py-5">
+<section class="py-2">
 	<div class="container-fluid  px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<!-- Botão de Voltar -->
 			<div class="col-12 mb-3">
-				<button class="btn btn-secondary" onclick="history.back()">Voltar</button>
+				<button class="btn btn-secondary btn-sm-auto d-none d-md-inline-block" onclick="history.back()">Voltar</button>
+				<button class="btn btn-secondary btn-block d-md-none" onclick="history.back()">Voltar</button>
 			</div>
 			<div class="col-md-6">
-				<img class="card-img-top mb-5 mb-md-0" src="<?= !empty($item->imagem) ? base_url($item->imagem) : base_url('assets/img/produto_default.jpg'); ?>" />
+				<img class="card-img-top mb-5 mb-md-0" src="<?= !empty($produto->imagem) ? base_url('assets/admin/upload/' . $produto->imagem) : base_url('assets/img/produto_default.jpg'); ?>" />
 			</div>
 			<div class="col-md-6">
 				<div class="small mb-1">#<?= $produto->id; ?></div>
 
 				<h1 class="display-5 fw-bolder"><?= $produto->nome; ?></h1>
 				<p class="lead"><?= $produto->detalhes; ?></p>
-				<div class="display-3 mb-5">
+				<div class="display-4 mb-5">
 					<span><?= $produto->preco_intervalo; ?></span>
 				</div>
 
@@ -22,18 +23,19 @@
 				<h5 class="fw-bolder mt-4">Características:</h5>
 				<div class="row">
 					<!-- Exibindo Marcas -->
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<ul>
 							<?php foreach ($marcas as $marca => $item) : ?>
 								<li>Marca: <?= $item->nome; ?></li>
 							<?php endforeach; ?>
 						</ul>
+						<p class="text-left">Cor: Preto ou Cinza</p>
 					</div>
 				</div>
 
-				<div class="d-flex gap-2 mb-4">
-					<a class="btn btn-info flex-fill" href="<?= $produto->link_1; ?>" target="_blank">Comprar na Loja 1</a>
-					<a class="btn btn-warning flex-fill" href="<?= $produto->link_2; ?>" target="_blank">Comprar na Loja 2</a>
+				<div class="d-flex mb-4">
+					<a class="btn btn-info mr-2 w-50" href="<?= $produto->link_1; ?>" target="_blank">Comprar na Loja 1</a>
+					<a class="btn btn-warning w-50" href="<?= $produto->link_2; ?>" target="_blank">Comprar na Loja 2</a>
 				</div>
 
 				<?php if ($produto->comprado) : ?>
