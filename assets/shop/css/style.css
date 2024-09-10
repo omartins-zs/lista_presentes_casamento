@@ -46,15 +46,24 @@
 }
 
 .header-image {
-	background-image: url('../../img/Casamento_Gabriel_Barbara.png');
-	/* Caminho dinâmico usando PHP */
-	/* Substitua pelo caminho da sua imagem */
+	background-image: url("../../img/Casamento_Gabriel_Barbara.png");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	color: #fff;
-	height: 400px;
-	/* Garantir que o texto fique visível */
+	min-height: 400px; /* Tamanho da altura semelhante ao bg-dark */
+	display: flex;
+	align-items: center; /* Centraliza verticalmente */
+	justify-content: center; /* Centraliza horizontalmente */
+	width: 100%;
+}
+/* Estilos para mobile */
+@media (max-width: 576px) {
+	.header-image {
+		min-height: 140px; /* Ou  min-height: 250px; */
+		background-size: contain;
+		background-position: top; /* Faz a imagem se ajustar melhor no mobile */
+	}
 }
 
 @media (max-width: 768px) {
