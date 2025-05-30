@@ -31,7 +31,7 @@ services:
       # MYSQL_USER: user
       # MYSQL_PASSWORD: password
     ports:
-      - "3307:3306"   # expõe a 3306 interna na 3307 do host
+      - "3309:3306"   # expõe a 3306 interna na 3307 do host
     volumes:
       - db_data:/var/lib/mysql
       # se tiver um script de seed SQL:
