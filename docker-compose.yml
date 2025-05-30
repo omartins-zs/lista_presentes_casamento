@@ -1,0 +1,61 @@
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ci_lista_app
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: lista_presentes_casamento_db
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    networks:
+      - ci_network
+
+  db:
+    image: mysql:5.7
+    container_name: ci_lista_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lista_presentes_casamento_db
+      # opcional: criar um usuário adicional
+      # MYSQL_USER: user
+      # MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"   # expõe a 3306 interna na 3307 do host
+    volumes:
+      - db_data:/var/lib/mysql
+      # se tiver um script de seed SQL:
+      # - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    networks:
+      - ci_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ci_lista_pma
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - db
+    networks:
+      - ci_network
+
+networks:
+  ci_network:
+
+volumes:
+  db_data:

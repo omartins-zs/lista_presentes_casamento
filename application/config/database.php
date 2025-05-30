@@ -74,11 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'lista_presentes_casamento_db',
+    'dsn'      => '',
+    'hostname' => getenv('DB_HOST') ?: 'db',   // serviço Docker “db”
+    'port'     => getenv('DB_PORT') ?: 3306,
+    'username' => getenv('DB_USERNAME') ?: 'root',
+    'password' => getenv('DB_PASSWORD') ?: 'root',
+    'database' => getenv('DB_DATABASE') ?: 'lista_presentes_casamento_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
