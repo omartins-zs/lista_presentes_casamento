@@ -34,6 +34,7 @@ services:
       - "3309:3306"   # expõe a 3306 interna na 3307 do host
     volumes:
       - db_data:/var/lib/mysql
+      - ./lista_presentes_casamento_db.sql:/docker-entrypoint-initdb.d/lista_presentes_casamento_db.sql
       # se tiver um script de seed SQL:
       # - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
     networks:
