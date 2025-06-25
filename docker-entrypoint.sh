@@ -10,6 +10,8 @@ set -e
 
 echo "⏳ Aguardando MySQL em $DB_HOST:$DB_PORT..."
 
+export MYSQL_PWD="$DB_PASSWORD"
+
 until mysqladmin ping -h"$DB_HOST" -P"$DB_PORT" --silent; do
   printf "."
   sleep 2
@@ -18,7 +20,7 @@ done
 echo
 echo "✅ MySQL no ar — criando banco '$DB_DATABASE' (se não existir)..."
 
-mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" <<-EOSQL
+mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" <<-EOSQL
   CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\`
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
@@ -26,5 +28,5 @@ EOSQL
 
 echo "🎉 Banco '$DB_DATABASE' pronto."
 
-# Finalmente inicia o Apache
+# Finalmente inicia o Apache em foreground
 exec apache2-foreground
